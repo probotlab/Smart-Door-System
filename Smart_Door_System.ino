@@ -117,6 +117,9 @@ void loop()
    lcd.print(newcounter);
    lcd.setCursor(0, 1);
    lcd.print(distance);
+   
+   digitalWrite(LED_G, HIGH);
+   digitalWrite(LED_R, LOW);
    delay(1500);
     
   } else {
