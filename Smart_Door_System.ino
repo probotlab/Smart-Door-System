@@ -39,7 +39,7 @@ void setup()
   SPI.begin();      // Initiate  SPI bus
   mfrc522.PCD_Init();   // Initiate MFRC522
   myServo.attach(2); //servo pin
-  myServo.write(180); //servo start position
+  myServo.write(0); //servo start position
   
   pinMode(LED_G, OUTPUT);
   pinMode(LED_RB, OUTPUT);
@@ -107,7 +107,7 @@ void loop()
    Serial.println(newcounter);
    counter = newcounter; 
    
-   myServo.write(0);
+   myServo.write(180);
    digitalWrite(BUZZER, HIGH);
 
    lcd.clear();
@@ -117,20 +117,22 @@ void loop()
    lcd.print(newcounter);
    lcd.setCursor(0, 1);
    lcd.print(distance);
-   
+
    digitalWrite(LED_G, HIGH);
    digitalWrite(LED_R, LOW);
    delay(1500);
     
   } else {
     
-   myServo.write(180);
+   myServo.write(0);
    digitalWrite(BUZZER, LOW);
    lcd.clear();
 //   lcd.setCursor(0, 0);
 //   lcd.print("Door Closed!");
    lcd.setCursor(0, 1);
     lcd.print(distance);
+   digitalWrite(LED_G, LOW);
+   digitalWrite(LED_R, HIGH);
     
   }
   
@@ -190,7 +192,7 @@ else{
     newcounter = counter + 1;
     Serial.println(newcounter);
     counter = newcounter;
-    myServo.write(0);
+    myServo.write(180);
     digitalWrite(LED_G, HIGH);
     digitalWrite(LED_R, LOW);
     digitalWrite(BUZZER, HIGH);
@@ -202,7 +204,7 @@ else{
     
     delay(1500);
     
-    myServo.write(180);
+    myServo.write(0);
     digitalWrite(BUZZER, LOW);
     digitalWrite(LED_G, LOW);
     digitalWrite(LED_R, HIGH);
